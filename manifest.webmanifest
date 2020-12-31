@@ -1,6 +1,6 @@
 {
-  "short_name": "testground",
-  "name": "testground Sample",
+  "short_name": "Ecommerce Store with Typesense",
+  "name": "Ecommerce Store with Typesense",
   "icons": [
     {
       "src": "favicon.png",
