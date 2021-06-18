@@ -71,8 +71,6 @@ if (process.env[`TYPESENSE_HOST_NEAREST`]) {
   };
 }
 
-const INDEX_NAME = process.env.TYPESENSE_COLLECTION_NAME;
-
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: TYPESENSE_SERVER_CONFIG,
   additionalSearchParameters: {
