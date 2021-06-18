@@ -8,24 +8,19 @@ import instantsearch from 'instantsearch.js/es';
 import {
   searchBox,
   pagination,
-  currentRefinements,
   refinementList,
   hits,
-  infiniteHits,
   stats,
   sortBy,
   hierarchicalMenu,
-  menu,
-  numericMenu,
-  rangeInput,
   rangeSlider,
   ratingMenu,
   toggleRefinement,
   hitsPerPage,
   clearRefinements,
-  breadcrumb
-} from "instantsearch.js/es/widgets";
-import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
+  breadcrumb,
+} from 'instantsearch.js/es/widgets';
+import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 let TYPESENSE_SERVER_CONFIG = {
   apiKey: process.env.TYPESENSE_SEARCH_ONLY_API_KEY, // Be sure to use an API key that only allows searches, in production
@@ -84,7 +79,7 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     // The following parameters are directly passed to Typesense's search API endpoint.
     //  So you can pass any parameters supported by the search endpoint below.
     //  queryBy is required.
-    queryBy: "name,description,categories",
+    queryBy: 'name,categories',
     // groupBy: "categories",
     // groupLimit: 1
     // pinnedHits: "23:2"
@@ -93,130 +88,169 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
 const searchClient = typesenseInstantsearchAdapter.searchClient;
 const search = instantsearch({
   searchClient,
-  indexName: "products",
-  routing: true
+  indexName: 'products',
+  routing: true,
 });
 
 // ============ Begin Widget Configuration
 search.addWidgets([
-  searchBox({
-    container: "#searchbox"
-  }),
   pagination({
-    container: "#pagination"
-  }),
-  currentRefinements({
-    container: "#current-refinements"
+    container: '#pagination',
+    cssClasses: {
+      list: 'd-flex flex-row justify-content-end',
+      item: 'px-2 d-block',
+      link: 'text-decoration-none',
+      disabledItem: 'text-muted',
+      selectedItem: 'font-weight-bold text-primary',
+    },
   }),
   refinementList({
-    limit: 50,
-    showMoreLimit: 100,
-    container: "#brand-list",
-    attribute: "brand",
+    limit: 10,
+    showMoreLimit: 50,
+    container: '#brand-list',
+    attribute: 'brand',
     searchable: true,
+    searchablePlaceholder: 'Search brands',
     showMore: true,
-    sortBy: ["name:asc", "count:desc"]
-  }),
-  menu({
-    container: "#categories-menu",
-    attribute: "categories"
+    sortBy: ['name:asc', 'count:desc'],
+    cssClasses: {
+      searchableInput:
+        'form-control form-control-sm form-control-secondary mb-2 border-light-2',
+      searchableSubmit: 'd-none',
+      searchableReset: 'd-none',
+      showMore: 'btn btn-secondary btn-sm',
+      list: 'list-unstyled',
+      count: 'badge text-dark-2 ml-2',
+      label: 'd-flex align-items-center',
+      checkbox: 'mr-2',
+    },
   }),
   hierarchicalMenu({
-    container: "#categories-hierarchical-menu",
+    container: '#categories-hierarchical-menu',
+    showParentLevel: true,
+    rootPath: 'Cell Phones',
     attributes: [
-      "categories.lvl0",
-      "categories.lvl1",
-      "categories.lvl2",
-      "categories.lvl3"
-    ]
-  }),
-  numericMenu({
-    container: "#price-menu",
-    attribute: "price",
-    items: [
-      {label: "All"},
-      {label: "Less than 500$", end: 500},
-      {label: "Between 500$ - 1000$", start: 500, end: 1000},
-      {label: "More than 1000$", start: 1000}
-    ]
+      'categories.lvl0',
+      'categories.lvl1',
+      'categories.lvl2',
+      'categories.lvl3',
+    ],
+    cssClasses: {
+      showMore: 'btn btn-secondary btn-sm',
+      list: 'list-unstyled',
+      childList: 'ml-4',
+      count: 'badge text-dark-2 ml-2',
+      link: 'text-dark text-decoration-none',
+      selectedItem: 'text-primary font-weight-bold',
+      parentItem: 'text-dark font-weight-bold',
+    },
   }),
   toggleRefinement({
-    container: "#toggle-refinement",
-    attribute: "free_shipping",
+    container: '#toggle-refinement',
+    attribute: 'free_shipping',
     templates: {
-      labelText: "Free shipping"
-    }
-  }),
-  rangeInput({
-    container: "#price-range-input",
-    attribute: "price"
+      labelText: 'Free shipping',
+    },
+    cssClasses: {
+      label: 'd-flex align-items-center',
+      checkbox: 'mr-2',
+    },
   }),
   rangeSlider({
-    container: "#price-range-slider",
-    attribute: "price"
+    container: '#price-range-slider',
+    attribute: 'price',
   }),
   ratingMenu({
-    container: "#rating-menu",
-    attribute: "rating"
+    container: '#rating-menu',
+    attribute: 'rating',
+    cssClasses: {
+      list: 'list-unstyled',
+      link: 'text-decoration-none',
+      starIcon: '',
+      count: 'badge text-dark-2 ml-2',
+      disabledItem: 'text-muted',
+      selectedItem: 'font-weight-bold text-primary',
+    },
   }),
   sortBy({
-    container: "#sort-by",
+    container: '#sort-by',
     items: [
-      {label: "Default", value: "products"},
-      {label: "Price (asc)", value: "products/sort/price:asc"},
-      {label: "Price (desc)", value: "products/sort/price:desc"}
-    ]
+      { label: 'Relevancy', value: 'products' },
+      { label: 'Price (asc)', value: 'products/sort/price:asc' },
+      { label: 'Price (desc)', value: 'products/sort/price:desc' },
+    ],
+    cssClasses: {
+      select: 'custom-select custom-select-sm',
+    },
   }),
   hits({
-    container: "#hits",
+    container: '#hits',
     templates: {
       item: `
         <div>
-          <img src="{{image}}" align="left" alt="{{name}}" />
-          <div class="hit-name">
-            {{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}}
-          </div>
-          <div class="hit-description">
-            {{#helpers.highlight}}{ "attribute": "description" }{{/helpers.highlight}}
-          </div>
-          <div class="hit-price">\${{price}}</div>
-          <div class="hit-rating">Categories: {{categories}}</div>
-          <div class="hit-rating">Rating: {{rating}}</div>
-          <div class="hit-free-shipping">Free Shipping: {{free_shipping}}</div>
+            <div class="row image-container">
+                <div class="col-md d-flex align-items-end justify-content-center">
+                    <img src="{{image}}" alt="{{name}}" />
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md">
+                    <h5>{{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}}</h5>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md">
+                  {{#helpers.highlight}}{ "attribute": "description" }{{/helpers.highlight}}
+                </div>
+            </div>
+
+            <div class="row mt-auto">
+              <div class="col-md">
+                <div class="hit-price font-weight-bold mt-4">\${{price}}</div>
+                <div class="hit-rating">Rating: {{rating}}/5</div>
+              </div>
+            </div>
         </div>
-      `
-    }
+      `,
+    },
+    cssClasses: {
+      list: 'list-unstyled grid-container',
+      item: 'd-flex flex-column search-result-card mb-1 mr-1 p-3',
+      loadMore: 'btn btn-primary mx-auto d-block mt-4',
+      disabledLoadMore: 'btn btn-dark mx-auto d-block mt-4',
+    },
   }),
   hitsPerPage({
-    container: "#hits-per-page",
+    container: '#hits-per-page',
     items: [
-      {label: "8 hits per page", value: 8, default: true},
-      {label: "16 hits per page", value: 16}
-    ]
+      { label: '9 per page', value: 9, default: true },
+      { label: '18 per page', value: 18 },
+    ],
+    cssClasses: {
+      select: 'custom-select custom-select-sm',
+    },
   }),
   stats({
-    container: "#stats",
+    container: '#stats',
     templates: {
       text: `
-      {{#hasNoResults}}No results{{/hasNoResults}}
-      {{#hasOneResult}}1 result{{/hasOneResult}}
-      {{#hasManyResults}}{{#helpers.formatNumber}}{{nbHits}}{{/helpers.formatNumber}} results{{/hasManyResults}}
-      found in {{processingTimeMS}}ms for {{query}}
-    `
-    }
+      {{#hasNoResults}}No products{{/hasNoResults}}
+      {{#hasOneResult}}1 product{{/hasOneResult}}
+      {{#hasManyResults}}{{#helpers.formatNumber}}{{nbHits}}{{/helpers.formatNumber}} products{{/hasManyResults}}
+      found in {{processingTimeMS}}ms
+    `,
+    },
+    cssClasses: {
+      text: 'small',
+    },
   }),
   clearRefinements({
-    container: "#clear-refinements"
+    container: '#clear-refinements',
+    cssClasses: {
+      button: 'btn btn-primary',
+    },
   }),
-  breadcrumb({
-    container: "#breadcrumb",
-    attributes: [
-      "categories.lvl0",
-      "categories.lvl1",
-      "categories.lvl2",
-      "categories.lvl3"
-    ]
-  })
 ]);
 
 search.start();

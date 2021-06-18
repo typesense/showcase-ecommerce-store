@@ -1,7 +1,5 @@
 # 📦 Instant E-Commerce Store Experience, powered by Typesense
 
-⚠️ Work in Progress ⚠️
-
 This is a demo that shows how you can use [Typesense's](https://github.com/typesense/typesense) feature set,
 to build not just a search experience, but also a full-fledged product browsing experience for an ecommerce store.
 
@@ -32,3 +30,7 @@ npm start
 ```
 
 Open http://localhost:3000 to see the app.
+
+## Credits
+
+The dataset used in this showcase is from Algolia's public set of datasets listed here: https://github.com/algolia/datasets

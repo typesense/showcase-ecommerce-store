@@ -5,7 +5,7 @@
   "scripts": {
     "start": "parcel index.html --port 3000",
     "indexer": "node scripts/populateTypesenseIndex.js",
-    "typesenseServer": "docker run -i -p 8108:8108 -v`pwd`/typesense-server-data/:/data typesense/typesense:0.18.0 --data-dir /data --api-key=xyz --listen-port 8108 --enable-cors",
+    "typesenseServer": "docker run -i -p 8108:8108 -v`pwd`/typesense-server-data/:/data typesense/typesense:0.20.0 --data-dir /data --api-key=xyz --listen-port 8108 --enable-cors",
     "build": "parcel build index.html --public-url https://ecommerce-store.typesense.org",
     "deploy": "rm -rf build && yarn build && aws s3 cp --recursive ./dist s3://ecommerce-store.typesense.org/ --profile typesense && yarn clearCDNCache",
     "clearCDNCache": "aws cloudfront create-invalidation --distribution-id TODO --paths \"/*\" --profile typesense",
@@ -13,27 +13,25 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
-    "babel-eslint": "10.0.3",
-    "eslint": "5.7.0",
-    "eslint-config-prettier": "3.6.0",
-    "eslint-plugin-import": "2.19.1",
-    "eslint-plugin-prettier": "3.1.2",
-    "parcel-bundler": "1.12.4",
-    "prettier": "1.19.1",
-    "sass": "^1.26.11"
+    "babel-eslint": "10.1.0",
+    "eslint": "7.28.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-prettier": "3.4.0",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "2.3.1",
+    "sass": "^1.32.13"
   },
   "dependencies": {
-    "@babel/runtime": "^7.10.2",
-    "@popperjs/core": "^2.5.3",
-    "bootstrap": "^4.5.2",
-    "dotenv": "^8.2.0",
-    "fast-json-stringify": "^2.2.9",
-    "instantsearch.js": "^4.8.3",
-    "jquery": "^3.5.1",
-    "lodash": "^4.17.20",
-    "papaparse": "^5.3.0",
+    "@babel/runtime": "^7.14.6",
+    "@popperjs/core": "^2.9.2",
+    "bootstrap": "^4.6.0",
+    "dotenv": "^10.0.0",
+    "instantsearch.js": "^4.24.0",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
     "popper.js": "^1.16.1",
-    "typesense": "^0.8.0",
-    "typesense-instantsearch-adapter": "^0.3.0"
+    "typesense": "^0.13.0",
+    "typesense-instantsearch-adapter": "^1.2.1"
   }
 }

@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+$primary: #C7C402;
+$secondary: #C7C402;
+$gray-100: #e8e8e8;
+$gray-200: #d1d1d1;
+$gray-300: #bbbbbb;
+$gray-400: #a4a4a4;
+$gray-500: #8D8D8D;
+$gray-600: #717171;
+$gray-700: #555555;
+$gray-800: #383838;
+$gray-900: #1c1c1c;
+$black: #090909;
+$white: #ffffff;
+
+$text-muted: $gray-500;
+
+$body-bg: $white;
+
+$link-decoration: underline;
+$link-color: $gray-500;
+
+$input-font-weight: 400;
+$input-color: $primary;
+$input-bg: $white;
+$input-border-color: $primary;
+$input-focus-border-color: darken($primary, 5%);
+$input-btn-focus-box-shadow:  0 0 15px 0.2em rgba($input-focus-border-color, 0.25);
+
+$component-active-bg: $secondary;
+$custom-select-color: $gray-800;
+$custom-select-border-width: 0;
+$input-btn-padding-x-sm: 0.9rem;
+$input-btn-padding-y-sm: 0.4rem;
+
+$input-padding-x: 1.3rem;
+$input-padding-y: .8rem;
+
+$font-family-sans-serif: 'Nunito Sans', monospace;
+$font-size-base: 0.85rem;
+$input-font-size: 1.4rem;
+
+$input-font-weight: 400;
+$headings-font-weight: 700;
+$display1-weight: 700;
+$display2-weight: 700;
+$display3-weight: 700;
+$display4-weight: 700;
+
+$border-radius: 0px;
+
+$badge-font-size: 75%;
+$badge-font-weight: 300;
+$badge-pill-padding-x: 1.5em;
+$badge-padding-y: 0.75em;
+
+$enable-rounded: false;
+$enable-responsive-font-sizes: true;
+
+@import "~bootstrap/scss/bootstrap";
+
+.font-letter-spacing-tight {
+  letter-spacing: -0.05rem;
+}
+
+input[type=search] {
+  letter-spacing: -0.05em;
+}
+
+a {
+  text-decoration: underline !important;
+}
+
+.form-control-secondary {
+  color: $secondary;
+  border-color: $secondary;
+
+  &:focus {
+    color: $secondary;
+    border-color: $secondary;
+    box-shadow: 0 0 15px 0.2em rgba($secondary, 0.35);
+  }
+}
+
+.text-dark-2 {
+  color: $gray-600;
+}
+
+.navbar-toggler-icon {
+  background-size: 75% 75%;
+}
+
+// For loading indicator svg
+.stroke-primary {
+  stroke: $primary;
+}
+
+.border-width-2 {
+  border-width: 2px;
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url('~images/refine_icon.svg');
+}

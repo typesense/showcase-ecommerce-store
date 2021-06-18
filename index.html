@@ -1,81 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="theme-color" content="#000000" />
+<head>
+  <meta charset="utf-8"/>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <meta name="theme-color" content="#000000"/>
 
-    <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="shortcut icon" href="./favicon.png" />
+  <link rel="manifest" href="./manifest.webmanifest"/>
+  <link rel="shortcut icon" href="./favicon.png"/>
 
-    <link rel="stylesheet" href="./src/index.css" />
-    <link rel="stylesheet" href="./src/app.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css"
-    />
+  <link rel="stylesheet" href="./src/app.scss"/>
 
-    <title>Ecommerce Store with Typesense</title>
-  </head>
+  <title>Ecommerce Store with Typesense</title>
+</head>
 
-  <body>
-    <div class="container">
-      <div class="ais-InstantSearch">
-        <h1>Ecommerce Store with Typesense</h1>
+<body>
+<div class="container-fluid px-md-5 pt-4">
+  <div class="row d-flex align-items-center">
+    <div class="col-md">
+      <h1 class="display-4">
+        Ecommerce Store with Typesense
+      </h1>
+      <p class="lead mt-2">
+        In addition to search experiences,
+        Typesense can also be used to build <strong class="marker-highlight">browsing experiences</strong> like product listing pages in an ecommerce
+        store •
+        <a href="https://github.com/typesense/showcase-ecommerce-store" target="_blank">Source Code</a>
+      </p>
+    </div>
+  </div>
 
-        <div class="left-panel">
-          <div id="current-refinements"></div>
+  <div class="row mt-4">
+    <div class="col-md-3 pr-md-5">
+      <h5>Browse by Categories</h5>
+      <div class="mt-3" id="categories-hierarchical-menu"></div>
 
-          <h2>Breadcrumb</h2>
-          <div id="breadcrumb"></div>
+      <h5 class="mt-5">Filter by Brands</h5>
+      <div id="brand-list" class="mt-3"></div>
 
-          <h2>Brands</h2>
-          <h3>List</h3>
-          <div id="brand-list"></div>
+      <div class="mt-2">&nbsp;</div>
 
-          <h2>Categories</h2>
-          <h3>Menu</h3>
-          <div id="categories-menu"></div>
+      <div class="mt-5" id="toggle-refinement"></div>
 
-          <h3>Hierarchical Menu</h3>
-          <div id="categories-hierarchical-menu"></div>
+      <div class="mt-1">&nbsp;</div>
 
-          <h2>Toggle</h2>
-          <div id="toggle-refinement"></div>
+      <h5 class="mt-5">Filter by Price</h5>
+      <div id="price-range-slider"></div>
 
-          <h2>Price</h2>
-          <h3>Numeric Menu</h3>
-          <div id="price-menu"></div>
+      <div class="mt-1">&nbsp;</div>
 
-          <h3>Range input</h3>
-          <div id="price-range-input"></div>
+      <h5 class="mt-5">Filter by Rating</h5>
+      <div id="rating-menu" class="mt-3"></div>
 
-          <h3>Range slider</h3>
-          <div id="price-range-slider"></div>
+      <div class="mt-1">&nbsp;</div>
 
-          <h2>Rating Menu</h2>
-          <div id="rating-menu"></div>
+      <div id="clear-refinements" class="mt-5"></div>
+    </div>
+    <div class="col-md">
 
-          <div id="clear-refinements"></div>
+      <div class="row mt-5 mt-md-0">
+        <div class="col-md">
+          <div class="row">
+            <div class="col-md">
+              <div id="searchbox"></div>
+            </div>
+            <div class="col-md d-flex justify-content-end align-items-center">
+              <div id="stats"></div>
+              <div id="hits-per-page"></div>
+              <div id="sort-by"></div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="right-panel">
-          <div id="searchbox"></div>
-          <div id="stats"></div>
-          <h3>Sort By</h3>
-          <div id="sort-by"></div>
-          <h3>Hits</h3>
+      <div class="row mt-1">
+        <div class="col-sm">
           <div id="hits"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm">
           <div id="pagination"></div>
-          <h3>Hits per page</h3>
-          <div id="hits-per-page"></div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <script src="./src/app.js"></script>
-  </body>
+<script src="./src/app.js"></script>
+</body>
 </html>
