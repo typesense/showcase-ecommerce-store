@@ -1,4 +1,5 @@
 import jQuery from 'jquery';
+import { debounce } from 'lodash';
 
 window.$ = jQuery; // workaround for https://github.com/parcel-bundler/parcel/issues/333
 
@@ -92,6 +93,17 @@ const search = instantsearch({
 
 // ============ Begin Widget Configuration
 search.addWidgets([
+  searchBox({
+    container: '#searchbox',
+    showSubmit: false,
+    showReset: false,
+    placeholder: 'Search for products... ',
+    autofocus: false,
+    cssClasses: {
+      input: 'form-control form-control-sm border border-light text-dark',
+      loadingIcon: 'stroke-primary',
+    },
+  }),
   pagination({
     container: '#pagination',
     cssClasses: {
@@ -250,5 +262,20 @@ search.addWidgets([
     },
   }),
 ]);
+
+window.sendEventDebounced = debounce((uiState) => {
+  window.gtag('event', 'page_view', {
+    page_path: window.location.pathname + window.location.search,
+  });
+  console.log('here');
+}, 500);
+
+search.use(() => ({
+  onStateChange({ uiState }) {
+    window.sendEventDebounced(uiState);
+  },
+  subscribe() {},
+  unsubscribe() {},
+}));
 
 search.start();

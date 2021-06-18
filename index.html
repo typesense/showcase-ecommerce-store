@@ -14,6 +14,16 @@
   <link rel="stylesheet" href="./src/app.scss"/>
 
   <title>Ecommerce Store with Typesense</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116415641-9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-116415641-9');
+  </script>
 </head>
 
 <body>
@@ -23,14 +33,19 @@
       <h1 class="display-4">
         Ecommerce Store with Typesense
       </h1>
-      <p class="lead mt-2">
-        In addition to search experiences,
-        Typesense can also be used to build <strong class="marker-highlight">browsing experiences</strong> like product listing pages in an ecommerce
-        store •
-        <a href="https://github.com/typesense/showcase-ecommerce-store" target="_blank">Source Code</a>
-      </p>
+    </div>
+    <div class="col-md-2 d-none d-md-block">
+      <div id="searchbox"></div>
     </div>
   </div>
+
+  <p class="lead mt-2">
+    In addition to search experiences,
+    Typesense can also be used to build <strong class="marker-highlight">browsing experiences</strong> like product listing pages in an ecommerce
+    store •
+    <a href="https://github.com/typesense/showcase-ecommerce-store" target="_blank">Source Code</a>
+  </p>
+
 
   <div class="row mt-4">
     <div class="col-md-3 pr-md-5">
@@ -64,7 +79,6 @@
         <div class="col-md">
           <div class="row">
             <div class="col-md">
-              <div id="searchbox"></div>
             </div>
             <div class="col-md d-flex justify-content-end align-items-center">
               <div id="stats"></div>
