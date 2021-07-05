@@ -79,6 +79,8 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     //  So you can pass any parameters supported by the search endpoint below.
     //  queryBy is required.
     queryBy: 'name,categories',
+    numTypos: 1,
+    typoTokensThreshold: 0,
     // groupBy: "categories",
     // groupLimit: 1
     // pinnedHits: "23:2"
