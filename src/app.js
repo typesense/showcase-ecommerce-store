@@ -78,9 +78,10 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     // The following parameters are directly passed to Typesense's search API endpoint.
     //  So you can pass any parameters supported by the search endpoint below.
     //  queryBy is required.
-    queryBy: 'name,categories',
+    queryBy: 'name,categories,description',
+    queryByWeights: '4,2,1',
     numTypos: 1,
-    typoTokensThreshold: 0,
+    typoTokensThreshold: 1,
     // groupBy: "categories",
     // groupLimit: 1
     // pinnedHits: "23:2"
@@ -269,7 +270,6 @@ window.sendEventDebounced = debounce((uiState) => {
   window.gtag('event', 'page_view', {
     page_path: window.location.pathname + window.location.search,
   });
-  console.log('here');
 }, 500);
 
 search.use(() => ({
