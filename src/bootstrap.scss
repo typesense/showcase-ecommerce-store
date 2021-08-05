@@ -40,13 +40,12 @@ $input-padding-y: .8rem;
 $font-family-sans-serif: 'Nunito Sans', monospace;
 $font-size-base: 0.85rem;
 $input-font-size: 1.4rem;
+$lead-font-size: $font-size-base * 1.1;
 
 $input-font-weight: 400;
 $headings-font-weight: 700;
-$display1-weight: 700;
-$display2-weight: 700;
-$display3-weight: 700;
-$display4-weight: 700;
+$display-font-weight: 700;
+$font-weight-bolder: 600;
 
 $border-radius: 0px;
 
@@ -98,6 +97,11 @@ a {
 
 .border-width-2 {
   border-width: 2px;
+}
+
+.border-none {
+  border: 0;
+  box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
 }
 
 .navbar-light .navbar-toggler-icon {

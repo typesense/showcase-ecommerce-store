@@ -1,10 +1,5 @@
-import jQuery from 'jquery';
 import { debounce } from 'lodash';
 
-window.$ = jQuery; // workaround for https://github.com/parcel-bundler/parcel/issues/333
-
-import 'popper.js';
-import 'bootstrap';
 import instantsearch from 'instantsearch.js/es';
 import {
   searchBox,
@@ -32,6 +27,7 @@ let TYPESENSE_SERVER_CONFIG = {
       protocol: process.env.TYPESENSE_PROTOCOL,
     },
   ],
+  connectionTimeoutSeconds: 1,
   numRetries: 8,
 };
 
@@ -114,7 +110,7 @@ search.addWidgets([
       item: 'px-2 d-block',
       link: 'text-decoration-none',
       disabledItem: 'text-muted',
-      selectedItem: 'font-weight-bold text-primary',
+      selectedItem: 'fw-bold text-primary',
     },
   }),
   refinementList({
@@ -133,9 +129,9 @@ search.addWidgets([
       searchableReset: 'd-none',
       showMore: 'btn btn-secondary btn-sm',
       list: 'list-unstyled',
-      count: 'badge text-dark-2 ml-2',
+      count: 'badge text-dark-2 ms-2',
       label: 'd-flex align-items-center',
-      checkbox: 'mr-2',
+      checkbox: 'me-2',
     },
   }),
   hierarchicalMenu({
@@ -151,11 +147,11 @@ search.addWidgets([
     cssClasses: {
       showMore: 'btn btn-secondary btn-sm',
       list: 'list-unstyled',
-      childList: 'ml-4',
-      count: 'badge text-dark-2 ml-2',
+      childList: 'ms-4',
+      count: 'badge text-dark-2 ms-2',
       link: 'text-dark text-decoration-none',
-      selectedItem: 'text-primary font-weight-bold',
-      parentItem: 'text-dark font-weight-bold',
+      selectedItem: 'text-primary fw-bold',
+      parentItem: 'text-dark fw-bold',
     },
   }),
   toggleRefinement({
@@ -166,7 +162,7 @@ search.addWidgets([
     },
     cssClasses: {
       label: 'd-flex align-items-center',
-      checkbox: 'mr-2',
+      checkbox: 'me-2',
     },
   }),
   rangeSlider({
@@ -180,9 +176,9 @@ search.addWidgets([
       list: 'list-unstyled',
       link: 'text-decoration-none',
       starIcon: '',
-      count: 'badge text-dark-2 ml-2',
+      count: 'badge text-dark-2 ms-2',
       disabledItem: 'text-muted',
-      selectedItem: 'font-weight-bold text-primary',
+      selectedItem: 'fw-bold text-primary',
     },
   }),
   sortBy({
@@ -193,7 +189,7 @@ search.addWidgets([
       { label: 'Price (desc)', value: 'products/sort/price:desc' },
     ],
     cssClasses: {
-      select: 'custom-select custom-select-sm',
+      select: 'form-select form-select-sm border-none text-black',
     },
   }),
   hits({
@@ -220,7 +216,7 @@ search.addWidgets([
 
             <div class="row mt-auto">
               <div class="col-md">
-                <div class="hit-price font-weight-bold mt-4">\${{price}}</div>
+                <div class="hit-price fw-bold mt-4">\${{price}}</div>
                 <div class="hit-rating">Rating: {{rating}}/5</div>
               </div>
             </div>
@@ -229,7 +225,7 @@ search.addWidgets([
     },
     cssClasses: {
       list: 'list-unstyled grid-container',
-      item: 'd-flex flex-column search-result-card mb-1 mr-1 p-3',
+      item: 'd-flex flex-column search-result-card mb-1 me-1 p-3',
       loadMore: 'btn btn-primary mx-auto d-block mt-4',
       disabledLoadMore: 'btn btn-dark mx-auto d-block mt-4',
     },
@@ -241,7 +237,7 @@ search.addWidgets([
       { label: '18 per page', value: 18 },
     ],
     cssClasses: {
-      select: 'custom-select custom-select-sm',
+      select: 'form-select form-select-sm border-none text-black',
     },
   }),
   stats({

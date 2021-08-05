@@ -149,3 +149,7 @@ body {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+
+.ais-HitsPerPage-select:focus, .ais-SortBy-select:focus {
+  box-shadow: none;
+}

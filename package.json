@@ -22,13 +22,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.6",
-    "@popperjs/core": "^2.9.2",
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^5.1.0",
     "dotenv": "^10.0.0",
     "instantsearch.js": "^4.24.0",
-    "jquery": "^3.6.0",
     "lodash": "^4.17.21",
-    "popper.js": "^1.16.1",
     "typesense": "^0.13.0",
     "typesense-instantsearch-adapter": "^1.2.1"
   }
