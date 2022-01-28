@@ -78,6 +78,9 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     queryByWeights: '4,2,1',
     numTypos: 1,
     typoTokensThreshold: 1,
+    // By default, Typesense approximates facet counts for performance.
+    // Turning on exhaustive search will get you accurate facet counts, at the cost of a slight performance hit.
+    exhaustiveSearch: true,
     // groupBy: "categories",
     // groupLimit: 1
     // pinnedHits: "23:2"
