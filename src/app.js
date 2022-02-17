@@ -74,16 +74,16 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     // The following parameters are directly passed to Typesense's search API endpoint.
     //  So you can pass any parameters supported by the search endpoint below.
     //  queryBy is required.
-    queryBy: 'name,categories,description',
-    queryByWeights: '4,2,1',
-    numTypos: 1,
-    typoTokensThreshold: 1,
+    query_by: 'name,categories,description',
+    query_by_weights: '4,2,1',
+    num_typos: 1,
+    typo_tokens_threshold: 1,
     // By default, Typesense approximates facet counts for performance.
     // Turning on exhaustive search will get you accurate facet counts, at the cost of a slight performance hit.
-    exhaustiveSearch: true,
-    // groupBy: "categories",
-    // groupLimit: 1
-    // pinnedHits: "23:2"
+    exhaustive_search: true,
+    // group_by: "categories",
+    // group_limit: 1
+    // pinned_hits: "23:2"
   },
 });
 const searchClient = typesenseInstantsearchAdapter.searchClient;

@@ -24,9 +24,9 @@
     "@babel/runtime": "^7.14.6",
     "bootstrap": "^5.1.0",
     "dotenv": "^10.0.0",
-    "instantsearch.js": "^4.24.0",
+    "instantsearch.js": "^4.38.1",
     "lodash": "^4.17.21",
-    "typesense": "^1.1.4-4",
-    "typesense-instantsearch-adapter": "^2.3.1-0"
+    "typesense": "^1.2.0-0",
+    "typesense-instantsearch-adapter": "^2.4.0-0"
   }
 }
