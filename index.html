@@ -48,6 +48,7 @@
   <ul class="mt-1">
     <li>Product data to render the grid is fetched by the front-end from a <strong>Geo-Distributed Typesense Cloud cluster</strong> with nodes in Oregon, Frankfurt and Mumbai.</li>
     <li>Product API Requests are routed to the node that is closest to the user's location, like a CDN. Since data is geographically distributed, this reduces latency even more for your users, as they browse products.</li>
+    <li>We use Typesense's Vector Search feature (available as of 0.24.0.rcn51) to power the "Find Similar" link under each product. Click on it to learn more.</li>
     <li>See <a href="https://github.com/typesense/showcase-ecommerce-store" target="_blank">Source Code</a>.</li>
   </ul>
 
@@ -113,12 +114,16 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Similar Products</h5>
+        <h2 class="modal-title">Similar Products</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body ">
-        <p>We use SentenceBERT to generate vectors for each product, then index them using Typesense's vector search feature (available as of 0.24.0.rcn51), and then do a nearest neighbor search to
-          show similar products.</p>
+        <h5>How this works:</h5>
+        <ul>
+          <li>We use SentenceBERT <a href="https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/vector-generation/main.py" target="_blank">to generate vectors</a> for each product</li>
+          <li>Then we <a href="https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/populateTypesenseIndex.js" target="_blank">index them</a> using Typesense's vector search feature (available as of 0.24.0.rcn51)</li>
+          <li>When "Find similar" is clicked, we do a <a href="https://github.com/typesense/showcase-ecommerce-store/blob/2837e880b7a426a4008d6819b5369b76c4c178fb/src/app.js#L295-L302" target="_blank">nearest neighbor search</a> to show similar products.</li>
+        </ul>
         <div class="similar-products d-flex overflow-auto"></div>
       </div>
       <div class="modal-footer">
