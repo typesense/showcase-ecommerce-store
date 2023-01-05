@@ -297,7 +297,7 @@ window.findSimilarProducts = async function (productId) {
     .documents()
     .search({
       q: '*',
-      per_page: 8,
+      per_page: 4,
       vector_query: `vectors:([], id: ${productId})`,
     });
   console.log(results);
@@ -319,7 +319,7 @@ window.findSimilarProducts = async function (productId) {
     `;
   });
 
-  $('#similar-products-modal .modal-body').html(modalContent);
+  $('#similar-products-modal .modal-body .similar-products').html(modalContent);
   const modal = new bootstrap.Modal('#similar-products-modal', {});
   modal.show();
 };

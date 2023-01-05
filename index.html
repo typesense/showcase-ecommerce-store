@@ -110,13 +110,16 @@
 </div>
 
 <div id="similar-products-modal" class="modal" tabindex="-1">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Similar Products</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body d-flex overflow-auto">
+      <div class="modal-body ">
+        <p>We use SentenceBERT to generate vectors for each product, then index them using Typesense's vector search feature (available as of 0.24.0.rcn51), and then do a nearest neighbor search to
+          show similar products.</p>
+        <div class="similar-products d-flex overflow-auto"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
