@@ -120,7 +120,7 @@
       <div class="modal-body ">
         <h5>How this works:</h5>
         <ul>
-          <li>We use SentenceBERT <a href="https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/vector-generation/main.py" target="_blank">to generate vectors</a> for each product</li>
+          <li>We use Sentence-BERT <a href="https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/vector-generation/main.py" target="_blank">to generate vectors</a> for each product</li>
           <li>Then we <a href="https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/populateTypesenseIndex.js" target="_blank">index them</a> using Typesense's vector search feature (available as of 0.24.0.rcn51)</li>
           <li>When "Find similar" is clicked, we do a <a href="https://github.com/typesense/showcase-ecommerce-store/blob/2837e880b7a426a4008d6819b5369b76c4c178fb/src/app.js#L295-L302" target="_blank">nearest neighbor search</a> to show similar products.</li>
         </ul>
