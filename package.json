@@ -5,7 +5,7 @@
   "scripts": {
     "start": "parcel index.html --port 3000",
     "indexer": "node scripts/populateTypesenseIndex.js",
-    "typesenseServer": "docker run -i -p 8108:8108 -v`pwd`/typesense-server-data/:/data typesense/typesense:0.22.2 --data-dir /data --api-key=xyz --listen-port 8108 --enable-cors",
+    "typesenseServer": "docker run -i -p 8108:8108 -v`pwd`/typesense-server-data/:/data typesense/typesense:0.24.0.rcn49 --data-dir /data --api-key=xyz --listen-port 8108 --enable-cors",
     "build": "parcel build index.html --public-url https://ecommerce-store.typesense.org",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix"
@@ -23,10 +23,12 @@
   "dependencies": {
     "@babel/runtime": "^7.14.6",
     "bootstrap": "^5.1.0",
+    "jquery": "^3.6.3",
+    "@popperjs/core": "^2.11.6",
     "dotenv": "^10.0.0",
-    "instantsearch.js": "^4.38.1",
+    "instantsearch.js": "^4.49.3",
     "lodash": "^4.17.21",
-    "typesense": "^1.2.0-0",
-    "typesense-instantsearch-adapter": "^2.4.0-0"
+    "typesense": "^1.5.0-4",
+    "typesense-instantsearch-adapter": "^2.5.0-7"
   }
 }

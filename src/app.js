@@ -1,4 +1,8 @@
 import { debounce } from 'lodash';
+import jQuery from 'jquery';
+import * as bootstrap from 'bootstrap';
+
+window.$ = jQuery; // workaround for https://github.com/parcel-bundler/parcel/issues/333
 
 import instantsearch from 'instantsearch.js/es';
 import {
@@ -223,6 +227,12 @@ search.addWidgets([
                 <div class="hit-rating">Rating: {{rating}}/5</div>
               </div>
             </div>
+            
+            <div class="row mt-auto">
+                <div class="col-md">
+                  <a href="#" data-document-id="{{id}}" onclick="findSimilarProducts('{{id}}')">Find Similar</a>
+                </div>
+            </div>
         </div>
       `,
     },
@@ -280,3 +290,36 @@ search.use(() => ({
 }));
 
 search.start();
+
+window.findSimilarProducts = async function (productId) {
+  const results = await typesenseInstantsearchAdapter.typesenseClient
+    .collections('products')
+    .documents()
+    .search({
+      q: '*',
+      per_page: 8,
+      vector_query: `vectors:([], id: ${productId})`,
+    });
+  console.log(results);
+
+  const modalContent = results.hits.map((hit) => {
+    return `
+      <div class="p-3 m-3 border-1">
+        <div class="row image-container">
+            <div class="col-md d-flex align-items-end justify-content-center">
+                <img src="${hit.document.image}" alt="${hit.document.name}" />
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md">
+                ${hit.document.name}
+            </div>
+        </div>
+      </div>
+    `;
+  });
+
+  $('#similar-products-modal .modal-body').html(modalContent);
+  const modal = new bootstrap.Modal('#similar-products-modal', {});
+  modal.show();
+};
