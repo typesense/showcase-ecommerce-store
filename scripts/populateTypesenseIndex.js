@@ -69,11 +69,6 @@ module.exports = (async () => {
         facet: true,
       },
       {
-        name: 'image',
-        type: 'string',
-        facet: false,
-      },
-      {
         name: 'popularity',
         type: 'int32',
         facet: false,
@@ -93,6 +88,15 @@ module.exports = (async () => {
         type: 'float[]',
         num_dim: 384,
       },
+      // This is a field that exists in the document, but we only want to use it for display purposes and not search purposes.
+      // So we can just leave it off the schema, but still send it in the document.
+      // These fields are considered un-indexed fields, and stored on disk and returned when the document is a hit.
+      // These un-indexed fields do not count towards RAM usage.
+      // {
+      //   name: 'image',
+      //   type: 'string',
+      //   facet: false,
+      // },
     ],
     default_sorting_field: 'popularity',
   };
