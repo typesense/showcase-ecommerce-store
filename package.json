@@ -26,9 +26,9 @@
     "jquery": "^3.6.3",
     "@popperjs/core": "^2.11.6",
     "dotenv": "^10.0.0",
-    "instantsearch.js": "^4.49.3",
+    "instantsearch.js": "^4.58.0",
     "lodash": "^4.17.21",
-    "typesense": "^1.5.0",
-    "typesense-instantsearch-adapter": "^2.5.0"
+    "typesense": "^1.7.2-4",
+    "typesense-instantsearch-adapter": "^2.8.0-0"
   }
 }
