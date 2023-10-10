@@ -31,7 +31,7 @@ let TYPESENSE_SERVER_CONFIG = {
       protocol: process.env.TYPESENSE_PROTOCOL,
     },
   ],
-  connectionTimeoutSeconds: 1,
+  connectionTimeoutSeconds: 5,
   numRetries: 8,
 };
 
@@ -82,6 +82,7 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     query_by_weights: '4,2,1',
     num_typos: 1,
     typo_tokens_threshold: 1,
+    exclude_fields: 'vectors',
     // By default, Typesense approximates facet counts for performance.
     // Turning on exhaustive search will get you accurate facet counts, at the cost of a slight performance hit.
     exhaustive_search: true,
