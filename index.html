@@ -1,139 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <meta name="theme-color" content="#000000"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
 
-  <link rel="manifest" href="./manifest.webmanifest"/>
-  <link rel="shortcut icon" href="./favicon.png"/>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="shortcut icon" href="./favicon.png" />
 
-  <link rel="stylesheet" href="./src/app.scss"/>
+    <link rel="stylesheet" href="./src/app.scss" />
 
-  <title>Ecommerce Store with Typesense</title>
+    <title>Ecommerce Store with Typesense</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116415641-9"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-116415641-9"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-    gtag('config', 'UA-116415641-9');
-  </script>
-</head>
+      gtag('config', 'UA-116415641-9');
+    </script>
+  </head>
 
-<body>
-<div class="container-fluid px-md-5 pt-4">
-  <div class="row d-flex align-items-center">
-    <div class="col-md">
-      <h1 class="display-4">
-        Ecommerce Store with Typesense
-      </h1>
-    </div>
-    <div class="col-md-2 d-none d-md-block">
-      <div id="searchbox"></div>
-    </div>
-  </div>
-
-  <div class="lead mt-2">
-    Besides search experiences,
-    Typesense can also be used to build <strong class="marker-highlight">blazing fast</strong>, <strong class="marker-highlight">browsing experiences</strong> like product listing pages in an ecommerce
-    store.
-  </div>
-
-  <ul class="mt-1">
-    <li>Product data to render the grid is fetched by the front-end from a <strong>Geo-Distributed Typesense Cloud cluster</strong> with nodes in Oregon, Frankfurt and Mumbai.</li>
-    <li>Product API Requests are routed to the node that is closest to the user's location, like a CDN. Since data is geographically distributed, this reduces latency even more for your users, as they browse products.</li>
-    <li>We use Typesense's Vector Search feature (available as of 0.24.0) to power the "Find Similar" link under each product. Click on it to learn more.</li>
-    <li>See <a href="https://github.com/typesense/showcase-ecommerce-store" target="_blank">Source Code</a>.</li>
-  </ul>
-
-
-  <div class="row mt-4">
-    <div class="col-md-3 pr-md-5">
-      <h5>Browse by Categories</h5>
-      <div class="mt-3" id="categories-hierarchical-menu"></div>
-
-      <h5 class="mt-5">Filter by Brands</h5>
-      <div id="brand-list" class="mt-3"></div>
-
-      <div class="mt-2">&nbsp;</div>
-
-      <div class="mt-5" id="toggle-refinement"></div>
-
-      <div class="mt-1">&nbsp;</div>
-
-      <h5 class="mt-5">Filter by Price</h5>
-      <div id="price-range-slider"></div>
-
-      <div class="mt-1">&nbsp;</div>
-
-      <h5 class="mt-5">Filter by Rating</h5>
-      <div id="rating-menu" class="mt-3"></div>
-
-      <div class="mt-1">&nbsp;</div>
-
-      <div id="clear-refinements" class="mt-5"></div>
-    </div>
-    <div class="col-md">
-
-      <div class="row mt-5 mt-md-0">
+  <body>
+    <div class="container-fluid px-md-5 pt-4">
+      <div class="row d-flex align-items-center">
         <div class="col-md">
-          <div class="row">
-            <div class="col-md-4">
+          <h1 class="display-4">Ecommerce Store with Typesense</h1>
+        </div>
+        <div class="col-md-2 d-none d-md-block">
+          <div id="searchbox"></div>
+        </div>
+      </div>
+
+      <div class="lead mt-2">
+        Besides search experiences, Typesense can also be used to build
+        <strong class="marker-highlight">blazing fast</strong>,
+        <strong class="marker-highlight">browsing experiences</strong> like
+        product listing pages in an ecommerce store.
+      </div>
+
+      <ul class="mt-1">
+        <li>
+          Product data to render the grid is fetched by the front-end from a
+          <strong>Geo-Distributed Typesense Cloud cluster</strong> with nodes in
+          Oregon, Frankfurt and Mumbai.
+        </li>
+        <li>
+          Product API Requests are routed to the node that is closest to the
+          user's location, like a CDN. Since data is geographically distributed,
+          this reduces latency even more for your users, as they browse
+          products.
+        </li>
+        <li>
+          We use Typesense's Vector Search feature (available as of 0.24.0) to
+          power the "Find Similar" link under each product. Click on it to learn
+          more.
+        </li>
+        <li>
+          See
+          <a
+            href="https://github.com/typesense/showcase-ecommerce-store"
+            target="_blank"
+            >Source Code</a
+          >.
+        </li>
+      </ul>
+
+      <div class="row mt-4">
+        <div class="col-md-3 pr-md-5">
+          <h5>Browse by Categories</h5>
+          <div class="mt-3" id="categories-hierarchical-menu"></div>
+
+          <h5 class="mt-5">Filter by Brands</h5>
+          <div id="brand-list" class="mt-3"></div>
+
+          <div class="mt-2">&nbsp;</div>
+
+          <div class="mt-5" id="toggle-refinement"></div>
+
+          <div class="mt-1">&nbsp;</div>
+
+          <h5 class="mt-5">Filter by Price</h5>
+          <div id="price-range-slider"></div>
+
+          <div class="mt-1">&nbsp;</div>
+
+          <h5 class="mt-5">Filter by Rating</h5>
+          <div id="rating-menu" class="mt-3"></div>
+
+          <div class="mt-1">&nbsp;</div>
+
+          <div id="clear-refinements" class="mt-5"></div>
+        </div>
+        <div class="col-md">
+          <div class="row mt-5 mt-md-0">
+            <div class="col-md">
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div
+                  class="col-md-8 d-flex justify-content-end align-items-center"
+                >
+                  <div id="stats"></div>
+                  <div id="hits-per-page"></div>
+                  <div id="sort-by"></div>
+                </div>
+              </div>
             </div>
-            <div class="col-md-8 d-flex justify-content-end align-items-center">
-              <div id="stats"></div>
-              <div id="hits-per-page"></div>
-              <div id="sort-by"></div>
+          </div>
+
+          <div class="row mt-1">
+            <div class="col-sm">
+              <div id="hits"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm">
+              <div id="pagination"></div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="row mt-1">
-        <div class="col-sm">
-          <div id="hits"></div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm">
-          <div id="pagination"></div>
+    <div id="similar-products-modal" class="modal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Similar Products</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h5>How this works:</h5>
+            <ul>
+              <li>
+                We use Sentence-BERT
+                <a
+                  href="https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/vector-generation/main.py"
+                  target="_blank"
+                  >to generate vectors</a
+                >
+                for each product
+              </li>
+              <li>
+                Then we
+                <a
+                  href="https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/populateTypesenseIndex.js"
+                  target="_blank"
+                  >index them</a
+                >
+                using Typesense's vector search feature (available as of 0.24.0)
+              </li>
+              <li>
+                When "Find similar" is clicked, we do a
+                <a
+                  href="https://github.com/typesense/showcase-ecommerce-store/blob/2837e880b7a426a4008d6819b5369b76c4c178fb/src/app.js#L295-L302"
+                  target="_blank"
+                  >nearest neighbor search</a
+                >
+                to show similar products.
+              </li>
+            </ul>
+            <div class="similar-products d-flex overflow-auto"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div id="similar-products-modal" class="modal" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Similar Products</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body ">
-        <h5>How this works:</h5>
-        <ul>
-          <li>We use Sentence-BERT <a href="https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/vector-generation/main.py" target="_blank">to generate vectors</a> for each product</li>
-          <li>Then we <a href="https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/populateTypesenseIndex.js" target="_blank">index them</a> using Typesense's vector search feature (available as of 0.24.0)</li>
-          <li>When "Find similar" is clicked, we do a <a href="https://github.com/typesense/showcase-ecommerce-store/blob/2837e880b7a426a4008d6819b5369b76c4c178fb/src/app.js#L295-L302" target="_blank">nearest neighbor search</a> to show similar products.</li>
-        </ul>
-        <div class="similar-products d-flex overflow-auto"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script src="./src/app.js"></script>
-</body>
+    <script type="module" src="./src/app.js"></script>
+  </body>
 </html>

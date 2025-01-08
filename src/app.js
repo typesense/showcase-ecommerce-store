@@ -18,8 +18,8 @@ import {
   toggleRefinement,
   hitsPerPage,
   clearRefinements,
-  breadcrumb,
 } from 'instantsearch.js/es/widgets';
+import { history } from 'instantsearch.js/es/lib/routers';
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 let TYPESENSE_SERVER_CONFIG = {
@@ -95,7 +95,12 @@ const searchClient = typesenseInstantsearchAdapter.searchClient;
 const search = instantsearch({
   searchClient,
   indexName: 'products',
-  routing: true,
+  routing: {
+    router: history({ cleanUrlOnDispose: true }),
+  },
+  future: {
+    preserveSharedStateOnUnmount: true,
+  },
 });
 
 // ============ Begin Widget Configuration
@@ -166,7 +171,7 @@ search.addWidgets([
     container: '#toggle-refinement',
     attribute: 'free_shipping',
     templates: {
-      labelText: 'Free shipping',
+      labelText: () => 'Free shipping',
     },
     cssClasses: {
       label: 'd-flex align-items-center',
@@ -203,35 +208,37 @@ search.addWidgets([
   hits({
     container: '#hits',
     templates: {
-      item: `
+      item: (hit, { html, components }) => html`
         <div>
             <div class="row image-container">
                 <div class="col-md d-flex align-items-end justify-content-center">
-                    <img src="{{image}}" alt="{{name}}" />
+                    <img src="${hit.image}" alt="${hit.name}" />
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-md">
-                    <h5>{{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}}</h5>
+                    <h5>${components.Highlight({ hit, attribute: 'name' })}</h5>
                 </div>
             </div>
 
             <div class="row mt-2">
-                <div class="col-md">
-                  {{#helpers.highlight}}{ "attribute": "description" }{{/helpers.highlight}}
-                </div>
+                <div class="col-md">${components.Highlight({
+                  hit,
+                  attribute: 'description',
+                })}</div>
             </div>
 
             <div class="row mt-auto">
               <div class="col-md">
-                <div class="hit-price fw-bold mt-4">\${{price}}</div>
-                <div class="hit-rating">Rating: {{rating}}/5</div>
+                <div class="hit-price fw-bold mt-4">\$${hit.price}</div>
+                <div class="hit-rating">Rating: ${hit.rating}/5</div>
               </div>
             </div>
-            
+
             <div class="row mt-auto">
                 <div class="col-md">
-                  <a href="#" data-document-id="{{id}}" onclick="findSimilarProducts('{{id}}')">Find Similar</a>
+                  <a href="#" data-document-id="${hit.id}" onclick="${() =>
+        findSimilarProducts(hit.id)}">Find Similar</a>
                 </div>
             </div>
         </div>
@@ -257,12 +264,20 @@ search.addWidgets([
   stats({
     container: '#stats',
     templates: {
-      text: `
-      {{#hasNoResults}}No products{{/hasNoResults}}
-      {{#hasOneResult}}1 product{{/hasOneResult}}
-      {{#hasManyResults}}{{#helpers.formatNumber}}{{nbHits}}{{/helpers.formatNumber}} products{{/hasManyResults}}
-      found in {{processingTimeMS}}ms
-    `,
+      text: (
+        { nbHits, hasNoResults, hasOneResult, processingTimeMS },
+        { html }
+      ) => {
+        let statsText = '';
+        if (hasNoResults) {
+          statsText = 'No results';
+        } else if (hasOneResult) {
+          statsText = '1 result';
+        } else {
+          statsText = `${nbHits.toLocaleString()} products`;
+        }
+        return html`${statsText} found in ${processingTimeMS}ms`;
+      },
     },
     cssClasses: {
       text: 'small',
